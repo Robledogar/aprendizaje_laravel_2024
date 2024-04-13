@@ -1,0 +1,1 @@
+Recomendación de usar Laragon en Windows (Laragon.org ) o herd.laravel.com en Mac
