@@ -51,5 +51,29 @@ PASOS:
 
 - usar el comando npm run dev cuando se hacen cambios de tipo frontend (control + C para detener)
 
-        - tener en cuenta esta protección al usar POST: <form method="POST">
-            @csrf    
+- tener en cuenta esta protección al usar POST: <form method="POST">
+    @csrf    
+
+- php artisan make:model (para crear un modelo de elocuent para que interactue con la base de datos)
+    php artisan make:model Chirp -mrc
+    esto creará un modelo, una migración y un controlador
+
+- Una migración es una clase que nos permite crear y modificar la estructura de la base de datos, podemos agregar, modificar y eliminar tablas y columnas.
+
+- php artisan migrate (para ejecutar las migraciones)
+    y php artisan migrate:rollback (del último BATCH)
+    o php artisan migrate:rollback --step=1 (para deshacer sólo la última migración)
+    $table->foreignId('user_id')->constrained()->cascadeOnDelete(); (linea de ejemplo añadida)
+
+- añadido esto al modelo creado para evitar un error: 
+        
+        protected $fillable = [
+        'message',
+        'user_id',
+    ];
+
+- Así se prepara un texto para su traducción: 
+    __('Chirp created successfully')
+    luego se añade al json (en la carpeta lang)
+
+

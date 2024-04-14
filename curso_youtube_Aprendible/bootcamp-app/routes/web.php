@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\ChirpController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Chirp;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +24,7 @@ Route::get('/', function () {
 // Route::view('/', 'welcome');
     
 
-Route::get('/chirps', function () {   
-    return 'Welcome to our chirps page';
-})->name('chirps.index');
+Route::get('/chirps', [ChirpController::class, 'index'])->name('chirps.index');
 
 // Route::get('/chirps/{chirp?}', function ($chirp = null) {
     
@@ -51,10 +51,8 @@ Route::middleware('auth')->group(function () {
         return view('chirps.index');
     })->name('chirps.index');
 
-    Route::post('/chirps', function () {   
-        $message = request('message');
-        //Para insertar en la base de datos
-    });
+    Route::post('/chirps',[ChirpController::class, 'store'])
+        ->name('chirps.store');
 });
 
 require __DIR__.'/auth.php';
