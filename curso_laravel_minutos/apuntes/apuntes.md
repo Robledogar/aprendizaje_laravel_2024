@@ -1,0 +1,3 @@
+- php artisan make:model Post -msfc (crear un model, factory, migracion, seeder y controlador)
+- php artisan migrate (para hacer las migraciones)
+- php artisan migrate:refresh --seed

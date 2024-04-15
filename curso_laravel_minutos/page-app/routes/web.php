@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'home')->name('home');
+Route::view('acerca-de', 'about')->name('about');
+
+Route::get('blog', 'BlogController@index')->name('blog.index');
+Route::get('blog/{post:slug}', 'BlogController@show')->name('blog.show');
+
+Route::view('contactos', 'contact')->name('contact');
+
