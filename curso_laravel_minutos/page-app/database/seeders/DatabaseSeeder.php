@@ -12,13 +12,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\Post::factory(10)->create();
-
-        \App\Models\Post::factory()->create([
-        'title' => fake()->sentence(4),
-            'slug' => fake()-> name(),
-            'body' => fake()->paragraph(3, true)
+        $this->call([
+            PostSeeder::class 
         ]);
+    
     }
 }
 
