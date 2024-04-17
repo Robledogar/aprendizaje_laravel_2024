@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'home')->name('home');
 Route::view('acerca-de', 'about')->name('about');
 
-Route::get('blog', 'BlogController@index')->name('blog.index');
-Route::get('blog/{post:slug}', 'BlogController@show')->name('blog.show');
+// Route::get('blog', 'BlogController@index')->name('blog.index');
+Route::get('blog', [BlogController::class, 'index'])->name('blog.index');
+Route::get('blog/{post:slug}', [BlogController::class, 'show'])->name('blog.show');
+
 
 Route::view('contactos', 'contact')->name('contact');
