@@ -1,16 +1,24 @@
 Recomendación de usar Laragon en Windows (Laragon.org ) o herd.laravel.com en Mac
 
+https://www.youtube.com/watch?v=thCwKk3nyJE&t=4013s
+
 PASOS:
 - Instalar la aplicación
+    -h (para ver la ayuda en las instalaciones de terminal y más opciones)
+
 - Instalamos dependencias para login 
     composer require laravel/breeze --dev
-    php artisan breeze:install
-    se necesita una base de datos
+    php artisan breeze:install blade --dark
+    se necesita crear en este punto una base de datos
+    Ejecutar migraciones ()
+
 - Traducimos la instalación
-    composer require laravel-lang/common --dev
+    composer require laravel-lang/common --dev (paquete no oficial)
     php artisan lang:add es
     modificar: 'locale' => 'es', en config/app.php
     añadir esta sintaxis donde necesite traducción adicional: {{ __('ejemplo') }}
+    El archivo que contiene las traducciones es lang/es.json
+
 
 - tema de routing
     este comando sirve para conocer las rutas: php artisan route:list
@@ -48,23 +56,29 @@ PASOS:
                         }
                         return 'Chirp detail' .$chirp;
                     });
+- Dentro de resources/vistas/layouts/app.blade.php están los componentes reutilizables
+- Tanbien podemos reutilizar cosas de la vista dashboard
+- modificamos la vista layouts/navigation.blade.php (links de navegación y menú móvil)
 
 - usar el comando npm run dev cuando se hacen cambios de tipo frontend (control + C para detener)
 
 - tener en cuenta esta protección al usar POST: <form method="POST">
-    @csrf    
+    @csrf    (protege contra ataques)
 
 - php artisan make:model (para crear un modelo de elocuent para que interactue con la base de datos)
     php artisan make:model Chirp -mrc
     esto creará un modelo, una migración y un controlador
+    Usar PascalCase
 
 - Una migración es una clase que nos permite crear y modificar la estructura de la base de datos, podemos agregar, modificar y eliminar tablas y columnas.
 
 - php artisan migrate (para ejecutar las migraciones)
-    y php artisan migrate:rollback (del último BATCH)
+    y php artisan migrate:rollback (del último BATCH (lote))
     o php artisan migrate:rollback --step=1 (para deshacer sólo la última migración)
     $table->foreignId('user_id')->constrained()->cascadeOnDelete(); (linea de ejemplo añadida)
 
+
+- Añadir esta linea a web.php para poder usar el modelo. use App\Models\Chirp;
 - añadido esto al modelo creado para evitar un error: 
         
         protected $fillable = [
@@ -75,5 +89,18 @@ PASOS:
 - Así se prepara un texto para su traducción: 
     __('Chirp created successfully')
     luego se añade al json (en la carpeta lang)
+
+- Utilizando sesiones para retornar feedback al usuario
+
+  @if (session('ejemplo'))
+    <div></div>
+  @endif
+
+  y con session()->flash('ejemplo', 'texto valor') en  web.php
+  podemos usar tambien with()
+
+
+  - Preparamos los controladores para no sobrecargar de código web.php
+  
 
 

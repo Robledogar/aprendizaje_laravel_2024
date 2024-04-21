@@ -14,7 +14,7 @@
                     <form method="POST" action="{{ route('chirps.store') }}">
                         @csrf
                         <textarea name="message" id="" placeholder="{{ __('what\'s on your mind?') }}" cols="40" rows="5"></textarea>
-                        <x-primary-button class="mt-4">Chirp</x-primary-button>
+                        <x-primary-button class="ml-4">Chirp</x-primary-button>
                     </form>
                 </div>
             </div>

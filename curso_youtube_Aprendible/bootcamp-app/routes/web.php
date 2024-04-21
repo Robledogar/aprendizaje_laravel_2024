@@ -17,9 +17,10 @@ use App\Models\Chirp;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome')->name('welcome');
     
 });
+
 
 // Route::view('/', 'welcome');
     
@@ -38,6 +39,12 @@ Route::get('/chirps', [ChirpController::class, 'index'])->name('chirps.index');
 //     }
 //     return 'Chirp detail' .$chirp;
 // });
+
+// Otros tipos de routes
+// Route::post();
+// Route::put();
+// Route::delete();
+// Route::patch();
 
 
 

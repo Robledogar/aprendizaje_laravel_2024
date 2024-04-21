@@ -23,6 +23,8 @@
                     <x-nav-link :href="route('chirps.index')" :active="request()->routeIs('dashboard')">
                         {{ __('Chirps') }}
                     </x-nav-link>
+
+                    
                 </div>
             </div>
 
