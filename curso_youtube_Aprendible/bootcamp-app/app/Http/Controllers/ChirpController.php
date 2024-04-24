@@ -12,7 +12,9 @@ class ChirpController extends Controller
      */
     public function index()
     {
-        return view('chirps.index');
+        return view('chirps.index', [
+            'chirps' => Chirp::with('user')->latest()->get()
+        ]);
     }
 
     /**
@@ -29,12 +31,15 @@ class ChirpController extends Controller
     public function store(Request $request)
     {
         // Validacion
-         
+        $validated = $request->validate([
+            'message' => ['required', 'min:3', 'max:255']
+        ]); 
+
+
         //Para insertar en la base de datos
-        Chirp::create([
-            'message' => $request->get('message'),
-            'user_id' => auth()->id(),
-        ]);
+        $request->user()->chirps()->create($validated);
+        
+        
 
         return to_route('chirps.index')->with('status', __('Chirp created successfully'));
     }
@@ -52,7 +57,9 @@ class ChirpController extends Controller
      */
     public function edit(Chirp $chirp)
     {
-        //
+        return view('chirps.edit', [
+            'chirp' => $chirp
+        ]);
     }
 
     /**
@@ -60,7 +67,15 @@ class ChirpController extends Controller
      */
     public function update(Request $request, Chirp $chirp)
     {
-        //
+        // Validacion
+        $validated = $request->validate([
+            'message' => ['required', 'min:3', 'max:255']
+        ]); 
+
+        $chirp->update($validated);
+
+        return to_route('chirps.index')
+        ->with('status', __('Chirp updates succesfully'));
     }
 
     /**

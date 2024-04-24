@@ -1,6 +1,8 @@
 Recomendación de usar Laragon en Windows (Laragon.org ) o herd.laravel.com en Mac
 
 https://www.youtube.com/watch?v=thCwKk3nyJE&t=4013s
+https://github.com/aprendible/aprendible-laravel-bootcamp
+
 
 PASOS:
 - Instalar la aplicación
@@ -101,6 +103,72 @@ PASOS:
 
 
   - Preparamos los controladores para no sobrecargar de código web.php
+
+
+  - Validación de formulario: En chirp.controller.php
+        // Validacion
+        $request->validate([
+            'message' => ['required', 'min:3']
+        ]); 
+
+        <!-- Componente para mostrar el error --> En index.blade.php
+        <x-input-error :messages="$errors->get('message')"/>
   
 
 
+- Eloquent relation
+    //En user.php (modelo)
+    public function chirps()
+    {
+        return $this->hasMany(Chirp::class);
+    }
+
+    Esto en ChirpController.php
+        //Para insertar en la base de datos
+        $request->user()->chirps()->create([
+            'message' => $request->get('message'),
+        ]);
+
+- Listado de chirps
+
+    Crear un foreach en la vista con la estructura
+    luego ir al controlador y poner esto:
+        return view('chirps.index', [
+            'chirps' => Chirp::all()
+        ]);
+
+
+@dump($variable) Esto sirve para ver una variable que esté disponible en una vista
+
+- Recordar establecer las relacciones entre tablas
+    Ejemplo:
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    Así vemos las consultas sql:
+        DB::listen(function ($query) {
+        dump($query->sql);
+        });
+
+    (Descubrimos el problema N+1)
+    Lo solucionamos así
+         public function index()
+        {
+            return view('chirps.index', [
+                'chirps' => Chirp::with('user')->latest()->get()
+            ]);
+        }
+
+- Editar registros
+     public function edit(Chirp $chirp)
+    {
+        return view('chirps.edit', [
+            'chirp' => $chirp
+        ]);
+    }
+
+- Actualizar registros
+    para put:
+        @csrf @method('PUT') en formularios

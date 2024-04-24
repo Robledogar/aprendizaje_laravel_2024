@@ -5,6 +5,10 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Chirp;
 
+// DB::listen(function ($query) {
+//     dump($query->sql);
+// });
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,16 +20,13 @@ use App\Models\Chirp;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome')->name('welcome');
-    
-});
+Route::view('/', 'welcome')->name('welcome');
 
 
 // Route::view('/', 'welcome');
     
 
-Route::get('/chirps', [ChirpController::class, 'index'])->name('chirps.index');
+
 
 // Route::get('/chirps/{chirp?}', function ($chirp = null) {
     
@@ -58,8 +59,12 @@ Route::middleware('auth')->group(function () {
         return view('chirps.index');
     })->name('chirps.index');
 
+    Route::get('/chirps', [ChirpController::class, 'index'])->name('chirps.index');
     Route::post('/chirps',[ChirpController::class, 'store'])
         ->name('chirps.store');
+
+    Route::get('/chirp/{chirp}/edit', [ChirpController::class, 'edit'])->name('chirps.edit');
+    Route::put('/chirps/{chirp}', [ChirpController::class, 'update'])->name('chirps.update');
 });
 
 require __DIR__.'/auth.php';
