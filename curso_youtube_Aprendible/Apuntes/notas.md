@@ -172,3 +172,41 @@ PASOS:
 - Actualizar registros
     para put:
         @csrf @method('PUT') en formularios
+
+- Autorización
+
+    añadir esta validación en el controller:
+        if (auth()->user()->isNot($chirp->user)) {
+            abort(403);
+        }
+
+    Y esta en el index protegiendo el metodo edit y el update:
+        @if (auth()->user()->id === $chirp->user_id)
+
+- Políticas de acceso
+    php artisan make:policy ChirpPolicy
+
+- Eloquent Delete
+
+- Vite.js
+    ejecutar npm run build
+    tener en cuenta de que public/build lo ignorará git
+    tenerlo en cuenta al hacer el deploy
+
+    pasos si hay problemas:
+        eliminar /public/build de gitignore
+        y ejecutar npm run build
+        es una forma poco recomendable
+
+        es mejor sustituir las etiquetas style del welcome
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+- Deploy
+
+        crear un .htaccess y añadir este código:
+            <IfModule mod_rewrite.c>
+                RewriteEngine On
+                RewriteBase/
+                RewriteRule ^-$public/index.php[L]
+                RewriteRule ^((?!public/).*)$ public/$1 [L]
+            </IfModule>

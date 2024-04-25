@@ -9,14 +9,11 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    
-                    <!-- @dump($errors->all()) -->
-                
                     <form method="POST" action="{{ route('chirps.store') }}">
                         @csrf
                         <textarea name="message"
                                   class="block w-full rounded-md border-gray-300 bg-white shadow-sm transition-colors duration-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:focus:border-indigo-300 dark:focus:ring dark:focus:ring-indigo-200 dark:focus:ring-opacity-50"
-                                  placeholder="{{ __('what\'s on your mind?') }}"
+                                  placeholder="{{ __('What\'s on your mind?') }}"
                         >{{ old('message') }}</textarea>
                         <x-input-error :messages="$errors->get('message')"
                             class="mt-2"
@@ -28,9 +25,6 @@
                 </div>
             </div>
 
-
-            
-                
             <div class="mt-6 bg-white dark:bg-gray-800 shadow-sm rounded-lg divide-y dark:divide-gray-900">
                 @foreach($chirps as $chirp)
                     <div class="p-6 flex space-x-2">
@@ -42,7 +36,7 @@
                             <div class="flex justify-between items-center">
                                 <div>
                                     <span class="text-gray-800 dark:text-gray-200">
-                                    {{ $chirp->user ? $chirp->user->name : 'Anónimo' }}
+                                        {{ $chirp->user->name }}
                                     </span>
                                     <small class="ml-2 text-sm text-gray-600 dark:text-gray-400">{{ $chirp->created_at->format('j M Y, g:i a') }}</small>
                                     @unless($chirp->created_at->eq($chirp->updated_at))
@@ -52,25 +46,7 @@
                                 </div>
                             </div>
                             <p class="mt-4 text-lg text-gray-900 dark:text-gray-100">{{ $chirp->message }}</p>
-                            <!-- <a href="{{ route('chirps.edit', $chirp ) }}">{{ __('Edit Chirp') }}</a> -->
                         </div>
-                        <x-dropdown>
-                            <x-slot name="trigger">
-                                <button>
-                                <svg class="w-7 h-7 text-gray-600 dark:text-gray-100" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
-</svg>
-
-                                </button>
-                            </x-slot>
-
-                            <x-slot name="content">
-                                <x-dropdown-link :href="route('chirps.edit', $chirp)">
-                                    {{ __('Edit Chirp')}}
-
-                                </x-dropdown-link>
-                            </x-slot>
-                        </x-dropdown>
                         @can('update', $chirp)
                             <x-dropdown>
                                 <x-slot name="trigger">
@@ -98,9 +74,6 @@
                     </div>
                 @endforeach
             </div>
-            
-
-
         </div>
     </div>
 </x-app-layout>

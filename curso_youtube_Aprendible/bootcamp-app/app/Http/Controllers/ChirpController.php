@@ -57,6 +57,10 @@ class ChirpController extends Controller
      */
     public function edit(Chirp $chirp)
     {
+        $this->authorize('update', $chirp);
+        // if (auth()->user()->isNot($chirp->user)) {
+        //     abort(403);
+        // }
         return view('chirps.edit', [
             'chirp' => $chirp
         ]);
@@ -67,6 +71,8 @@ class ChirpController extends Controller
      */
     public function update(Request $request, Chirp $chirp)
     {
+
+        $this->authorize('update', $chirp);
         // Validacion
         $validated = $request->validate([
             'message' => ['required', 'min:3', 'max:255']
@@ -83,6 +89,11 @@ class ChirpController extends Controller
      */
     public function destroy(Chirp $chirp)
     {
-        //
+        $this->authorize('delete', $chirp);
+
+        $chirp->delete();
+
+        return to_route('chirps.index')
+            ->with('status', __('Chirp deleted sucessfully'));
     }
 }
