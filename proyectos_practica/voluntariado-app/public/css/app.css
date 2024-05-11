@@ -1,0 +1,358 @@
+.contenedor-encabezado {
+    width: 100%; /* Ancho completo del encabezado */
+    max-width: 1200px; /* Limita el ancho máximo para pantallas más grandes */
+    background-color: #fff; /* Fondo blanco */
+    padding: 20px; /* Relleno alrededor del contenido del encabezado */
+    margin: 0 auto; /* Centra el encabezado horizontalmente */
+    display: flex; /* Usa flexbox para el diseño */
+    flex-direction: column;
+    justify-content: space-between; /* Distribuye el espacio entre el contenido y la navegación */
+    align-items: center; /* Alinea el contenido y la navegación verticalmente */
+    gap: 20px;
+  }
+
+  header h1 {
+    font-family: 'Arial', sans-serif; /* Usa una fuente sans-serif para mejor legibilidad */
+    font-size: 2em; /* Tamaño de fuente grande para el título */
+    color: #333; /* Color de texto gris oscuro */
+    font-weight: bold; /* Grosor de texto en negrita */
+    line-height: 1.2; /* Ajusta la altura de línea para el espaciado */
+    margin: 0; /* Elimina el margen predeterminado */
+  }
+
+  nav {
+    background-color: #f0f0f0; /* Color de fondo para la barra de navegación */
+    padding: 10px 20px; /* Relleno alrededor del contenido de la navegación */
+    margin: 0; /* Elimina el margen predeterminado */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  nav ul {
+    list-style: none; /* Elimina las viñetas predeterminadas de la lista */
+    margin: 0; /* Elimina los márgenes predeterminados de la lista */
+    padding: 0; /* Elimina el relleno predeterminado de la lista */
+  }
+  
+  nav li {
+    display: inline-block; /* Muestra los elementos de navegación en línea */
+    margin-right: 20px; /* Espacio entre elementos de navegación */
+  }
+  
+  nav li a {
+    text-decoration: none; /* Elimina el subrayado predeterminado de los enlaces */
+    color: #333; /* Color del texto del enlace */
+    font-weight: bold; /* Grosor del texto del enlace */
+    padding: 5px 10px; /* Relleno alrededor del texto del enlace */
+  }
+  
+  nav li a:hover {
+    background-color: #e0e0e0; /* Color de fondo al pasar el mouse */
+  }
+
+  /* main de la Home */
+
+  /* Estilos de la sección principal (main) */
+
+main {
+    padding: 20px; /* Espacio interior de la sección principal */
+  }
+  
+  section {
+    margin-bottom: 40px; /* Espacio inferior entre secciones */
+  }
+  
+  .about,
+  .benefits,
+  .testimonials,
+  .call-to-action {
+    text-align: center; /* Alinea el texto de las secciones al centro */
+  }
+  
+  .about h2,
+  .benefits h2 {
+    font-size: 1.8em; /* Tamaño de la fuente de los títulos de secciones */
+    margin-bottom: 20px; /* Espacio inferior de los títulos de secciones */
+  }
+  
+  .about p,
+  .benefits p {
+    font-size: 1em; /* Tamaño de la fuente de los párrafos de secciones */
+    line-height: 1.6; /* Interlineado de los párrafos de secciones */
+  }
+  
+  .benefits ul {
+    list-style: none; /* Elimina las viñetas predeterminadas de la lista */
+    padding: 0;
+    margin: 0;
+  }
+  
+  .benefits li {
+    margin-bottom: 10px; /* Espacio inferior entre elementos de la lista */
+  }
+  
+  .testimonials {
+    display: flex; /* Muestra los testimonios en línea */
+    justify-content: space-between; /* Distribuye los testimonios entre ambos lados */
+  }
+  
+  .testimonial {
+    padding: 20px;
+    border: 1px solid #ddd; /* Borde gris claro para los testimonios */
+    border-radius: 5px; /* Redondea las esquinas de los testimonios */
+    margin-bottom: 20px; /* Espacio inferior entre testimonios */
+    width: 45%; /* Ancho de cada testimonio */
+  }
+  
+  .testimonial p {
+    font-size: 1em; /* Tamaño de la fuente del texto de los testimonios */
+    line-height: 1.5; /* Interlineado del texto de los testimonios */
+  }
+  
+  .call-to-action {
+    text-align: center; /* Alinea el texto de la llamada a la acción al centro */
+  }
+
+  
+
+
+  /* Estilos de las imágenes */
+
+  /* Imagen con borde y sombra */
+img {
+    display: block;
+    margin: 10px auto;
+    width: 70%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Efecto de opacidad al pasar el mouse */
+  img:hover {
+  
+  }
+
+
+  /* Estilos de la página About */
+
+  /* Estilos generales */
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+  }
+  
+  a {
+    color: #333;
+    
+    transition: color 0.3s ease;
+  }
+  
+  a:hover {
+    color: #007bff;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-primary {
+    
+  }
+  
+  /* Estilos del encabezado */
+  
+ 
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  h1 {
+    font-size: 2.5em;
+    margin: 0;
+  }
+  
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav li {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  
+  /* Estilos de la sección "About" */
+  
+  .about {
+    padding: 40px 0;
+    text-align: left;
+  }
+  
+  .about img {
+    width: 70%;
+    
+    border-radius: 5px;
+  }
+  
+  .about h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+  }
+  
+  .about ul {
+    list-style: disc;
+    padding-left: 20px;
+  }
+  
+  .about li {
+    margin-bottom: 10px;
+  }
+  
+  /* Estilos de otras secciones */
+  
+  .benefits {
+    text-align: center;
+    padding: 20px ;
+    display: flex;
+    flex-direction: column;
+
+    background-color: lightgrey;
+  }
+  
+  .benefits ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .benefits li {
+    display: inline-block;
+    margin: 0 15px;
+    font-size: 1.2em;
+  }
+  
+  .testimonials {
+    padding: 40px 0;
+  }
+  
+  .testimonials .testimonial {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .testimonials p {
+    margin-bottom: 10px;
+  }
+  
+  .testimonials cite {
+    font-style: italic;
+    font-size: 0.9em;
+  }
+  
+  .call-to-action {
+    text-align: center;
+    padding: 40px 0;
+  }
+  
+  .call-to-action p {
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos del pie de página */
+  
+  footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+
+
+  ¡Claro que sí! Aquí te presento algunos estilos CSS básicos para darle un mejor aspecto a tu formulario de registro de voluntarios:
+
+CSS
+/* Estilo general del formulario */
+.formulario {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Titulo del formulario */
+.formulario h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Párrafo informativo */
+.formulario p {
+    text-align: center;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+/* Grupos de formulario */
+.grupo-formulario {
+    margin-bottom: 15px;
+}
+
+/* Etiquetas de los campos */
+.grupo-formulario label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Campos de entrada */
+.control-formulario {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+/* Botón de envío */
+.btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Hover del botón de envío */
+.btn:hover {
+    background-color: #45a049;
+}
+  
+  
+ 
+  
+
+
+
+  

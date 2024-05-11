@@ -10,3 +10,7 @@
         DB_PASSWORD=
 
 3- Entender cómo funciona el marco de Laravel (https://laravel.com/docs/11.x/lifecycle)
+
+4- Frontend
+    - Rutas
+    - Vistas
