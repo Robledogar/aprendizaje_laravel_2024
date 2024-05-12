@@ -6,7 +6,7 @@
 <section class="about">
       <h2>¿Quiénes somos?</h2>
       <p>Somos un grupo de personas apasionadas por hacer del mundo un lugar mejor. Creemos en el poder del voluntariado para transformar vidas y comunidades. Trabajamos para fomentar la solidaridad y la responsabilidad social a través de la participación activa de la ciudadanía.</p>
-      <img src="https://pixabay.com/get/gcc5175da039d5d074488b23ac1817b716a0b12b84621fdbe18187dab139f7085f67b1daab2819ec579c853c8386d79f564840b6b9b63532f8707919762de6563_1280.png" alt="Equipo de voluntarios trabajando juntos">
+      <img src="img\foto-2.jpg" alt="Equipo de voluntarios trabajando juntos">
       
       <h3>Nuestra Misión y Valores</h3>
       <p>Nuestra misión es **inspirar y empoderar a las personas** para que se conviertan en agentes de cambio positivo a través del voluntariado. Nos guían los valores de la **solidaridad, la inclusión, el respeto, la responsabilidad y la sostenibilidad**. 

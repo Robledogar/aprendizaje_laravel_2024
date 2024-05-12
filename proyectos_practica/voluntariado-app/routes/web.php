@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InscribirseController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -17,5 +18,11 @@ Route::get('/contacto', function () {
 Route::get('/inscribete', function () {
     return view(('inscribete'));
 })->name('inscribete');
+
+
+Route::resource('inscribirse', InscribirseController::class);
+
+
+
 
 

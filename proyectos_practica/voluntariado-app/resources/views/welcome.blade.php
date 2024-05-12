@@ -11,7 +11,7 @@
         
       </div>
       <div class="hero-image">
-        <img src="https://pixabay.com/get/g737465a4686341ec5093b9580732cde44de72464f4612f2ecdf158522a73c63e0fa2728c3c645bc62c8f429b8db285735e3c1348cf4c4b863d277a35d629663a_1280.jpg" alt="Imagen de personas realizando voluntariado">
+        <img src="img\foto-3.jpg" alt="Imagen de personas realizando voluntariado">
       </div>
     </section>
 
