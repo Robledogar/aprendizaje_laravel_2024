@@ -28,7 +28,7 @@ class InscribirseController extends Controller
      */
     public function store(Request $request)
     {
-       
+       return "Funcionando el acceso al método store";
     }
 
     /**

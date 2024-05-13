@@ -1,14 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 
-Route::get('/', function () {
-    return 'welcome to the homepage';
-});
+Route::get('/', HomeController::class,); //por tener el método __invoke()en el controlador
 
-Route::get('/posts/{post}', function($post) {
-    return "Aquí se mostrará el post {$post}";
-});
+Route::get('/posts', [PostController::class, 'index']);
+Route::get('/posts/create', [PostController::class, 'create']);
+Route::get('/posts/{post}', [PostController::class, 'show']);
 
 
 
