@@ -146,3 +146,39 @@ Proceso:
                 (si falla, hay que fijarse que estén igual los cotejamientos utf8mb4_unicode_ci)
 
     - Lo siguiente serían las Migraciones (son una especie de control de versiones de la base de datos)
+
+        - Laravel lleva un registro de las migraciones que ejecutamos (Lo hace por bloques (batchs))
+
+        - Este comando revierte las migraciones del ultimo batch:
+            php artisan migrate:rollback
+
+        - Este comando crea una nueva migración:
+            php artisan make:migration categories
+
+        - Con esta otra sintaxis la crea pero con ayuda:
+            php artisan make:migration create_categories_table
+
+        - Este comando elimina todas las migraciones y las vuelve a ejecutar (efecto "actualizar todos los cambios realizados") (ahora todas tendrán el mismo batch)
+            php artisan migrate:refresh
+
+        - El siguiente comando se parece al anterior pero lo que hace primero es eliminar las tablas y volverlas a crear desde 0 (se usa si ya tienes alguna tabla incluida manualmente y las quieres eliminar también)
+            php artisan migrate:fresh
+
+        - Hay que tener en cuenta que estos métodos destruyen datos de la tabla. 
+
+        - Este método NO sería destructivo con los datos de la tabla:
+            php artisan make:migration add_avatar_to_users_table
+
+            (avatar sería el nuevo campo y users la tabla a modificar) (esto crearía una nueva migración donde podremos añadir el nuevo campo)
+
+                $table->string('avatar')->nullable();
+
+                Añadir esto también en el down
+                $table->dropColumn('avatar');
+
+                (importante el nullable() para no comprometer las anteriores lineas)
+
+            (Este nuevo campo se colocaría el último, pero para evitarlo, usamos este otro método (after()))
+                $table->string('avatar')->nullable()->after('email');
+
+
