@@ -11,7 +11,7 @@ Proceso:
                         return "Bienvenidos a la home del proyecto";
                     }
 
-                    si sólo tiene un método puede usarse __invoke()
+                    si sólo tiene un método puede usarse __invoke() (así sólo hay que hacer referencia al controlador al llamar a la ruta)
         -- En web.php la sintaxis para enviar al controlador es:
                 Route::get('/', [HomeController::class, 'index']);
     - Los controladores (o las rutas directamente) pueden dirigir hacia una vista
@@ -65,3 +65,84 @@ Proceso:
              php artisan make:component Alert2
              (Sirven para separar la lógica de la vista)
         - Los anteriores componentes se llaman "anónimos"
+
+    - Siguiente paso sería la creación de plantillas
+        - La primera opción sería mediante un componente (suele usarse más)
+            etc ..........
+            <header></header>
+                
+                {{$slot}}
+
+            <footer></footer>
+            etc ..........
+
+            y en la vista
+
+                <x-app-layout>
+                    codigo.....
+                </x-app-layout>
+
+        - La otra opción es creando una plantilla
+            - Dentro de views creamos la carpeta layouts
+
+                    <header></header>
+
+                         @yield('content')
+
+                    <footer></footer>
+
+                    se pueden colocar más yield:
+                        <title>@yield('tittle')</title>
+
+                        o así:
+                            <title>@yield('tittle', 'valor por defecto')</title>
+
+                    y en la vista:
+
+                    @extends('layouts.app');
+
+                        @section('content')
+    
+                    @endsection
+
+                    - si es una sóla línea puede hacerse así:
+                        @section('tittle', 'Titulo Yield')
+
+                - puede usarse también la combinacion:
+                    @stack('css') o @stack('js') (para el css y el js)
+
+                        + en la vista
+
+                    @push('css')
+                        <style>
+                            body {
+                                background-color: yellow;
+                            }
+                        </style>
+    
+                    @endpush
+
+                    (La diferencia es que yield sólo se puede utilizar una vez en la vista y push pueden ser varias veces)
+                    (en este caso push iría añadiendo los estilos)
+
+    
+
+        - Lo siguiente sería conectar con la base de datos
+            - En Laravel 11 ya te viene una DB dentro de database (database.sqlite) (puede descargarse un software para manejarla https://sqlitebrowser.org/dl/)
+
+            - Si queremos usar mysql hay que fijarse en el archivo config/database.php
+
+            - Allí vemos que el que hay que configurar realmente es el .env (modificando esta variable: DB_CONNECTION=mysql)
+
+            - También hay que descomentar estas:        
+                DB_HOST=127.0.0.1
+                DB_PORT=3306
+                DB_DATABASE=blog
+                DB_USERNAME=root
+                DB_PASSWORD=
+
+            (poner correctamente esos datos)
+            - Ejecutar e php artisan migrate
+                (si falla, hay que fijarse que estén igual los cotejamientos utf8mb4_unicode_ci)
+
+    - Lo siguiente serían las Migraciones (son una especie de control de versiones de la base de datos)

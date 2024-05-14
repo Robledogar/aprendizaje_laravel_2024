@@ -6,9 +6,11 @@ use App\Http\Controllers\PostController;
 
 Route::get('/', HomeController::class,); //por tener el método __invoke()en el controlador
 
-Route::get('/posts', [PostController::class, 'index']);
-Route::get('/posts/create', [PostController::class, 'create']);
+Route::get('/posts', [PostController::class, 'index'])->name('posts');
+Route::get('/posts/create', [PostController::class, 'create'])->name('create');
 Route::get('/posts/{post}', [PostController::class, 'show']);
+
+
 
 
 
