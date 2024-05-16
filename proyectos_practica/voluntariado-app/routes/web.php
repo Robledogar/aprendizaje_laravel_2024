@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\InscribirseController;
+use App\Models\Inscribirse;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -23,7 +24,19 @@ Route::get('/inscribete', function () {
 })->name('inscribete');
 
 
-Route::resource('inscribirse', InscribirseController::class);
+Route::get('/inscribirse', function() {
+    $inscrito = new Inscribirse;
+
+    $inscrito->nombre = 'Jose Luís';
+    $inscrito->email = 'jose@gmail.com';
+
+    $inscrito->save();
+
+    return $inscrito;
+
+
+});
+
 
 
 

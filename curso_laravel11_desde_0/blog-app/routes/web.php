@@ -3,12 +3,52 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
+use App\Models\Post;
 
 Route::get('/', HomeController::class,); //por tener el método __invoke()en el controlador
 
 Route::get('/posts', [PostController::class, 'index'])->name('posts');
 Route::get('/posts/create', [PostController::class, 'create'])->name('create');
 Route::get('/posts/{post}', [PostController::class, 'show']);
+
+Route::get('prueba', function () {
+    
+    $post = new Post;
+
+    // CREAR UN POST
+
+    // $post->title = 'Titulo de prueba 3';
+    // $post->content = 'Contenido de prueba 3';
+    // $post->categoria = 'Categoría de prueba 3';
+
+    // $post->save();
+
+    // return $post;
+
+    //ACTUALIZAR UN POST
+    // $post = Post::where('title', 'Titulo de prueba 2')
+    //             ->first();
+
+    // $post->categoria = 'Desarrollo web';
+    // $post->save();
+
+    // return $post;
+
+    // $post = Post::orderBy('categoria', 'desc')
+    //         ->select('id', 'title')
+    //         ->take(2)
+    //         ->get();
+
+    // return $post;
+
+    //ELIMINAR UN REGISTRO
+    $post = Post::find(1);
+
+    $post->delete();
+
+    
+
+});
 
 
 

@@ -181,4 +181,102 @@ Proceso:
             (Este nuevo campo se colocaría el último, pero para evitarlo, usamos este otro método (after()))
                 $table->string('avatar')->nullable()->after('email');
 
+    - Lo siguiente sería trabajar con los Modelos para interactuar con la base de datos (Elocuent (ORM))
+
+        - Creamos el Modelo con este comando
+            php artisan make:model Post
+
+        - Dentro del Modelo le especificamos con qué tabla debe conectarse
+            protected $table = 'posts';
+
+        - creamos una ruta para trabajar con la tabla en web.php (importante importar allí el Modelo)
+            use App\Models\Post;
+
+        - Creamos una variable que se tratará en una nueva instancia de la clase del modelo (creamos el objeto)
+
+            Route::get('prueba', function () {
+                $post = new Post;
+            });
+
+        - Así le específicamos a Eloquent que tenemos la intención de crear un nuevo registro, pero aún no le hemos especificado qué valores tendrá ese registro. 
+
+        - Eso lo haremos pasándoselo al objeto en forma de propiedad. Así:
+            
+            $post->title = 'Titulo de prueba 1';
+            $post->content = 'Contenido de prueba 1';
+            $post->categoria = 'Categoría de prueba 1';
+
+        - Con el método save(), le decimos a Eloquent que lo grabe en la tabla
+
+            $post->save();
+
+        - Podemos hacer la prueba entrando en la ruta de prueba.
+
+        - Apuntes de tipo CRUD
+           
+           CREAR UN REGISTRO
+
+                $post->title = 'Titulo de prueba 2';
+                $post->content = 'Contenido de prueba 2';
+                $post->categoria = 'Categoría de prueba 2';
+
+                $post->save();
+
+            ACTUALIZAR UN REGISTRO
+
+                $post = Post::find(2); (Esto sería para buscar por ID)
+
+                $post = Post::where('title', 'Titulo de prueba 1')
+                ->first(); (Esto filtraría por otro campo)
+
+                $post = Post::all(); (Esto nos traería todos los registros)
+
+                $post = Post::get(); (este método también los traería todos)
+
+                $post = Post::where('id','>=', '2')
+                ->get(); (Esto nos traería todos los registros con ID menor o igual a 2)
+
+                $post = Post::orderBy('id', 'desc')
+                ->get(); (Este método sirve para ordenar)
+
+                $post = Post::orderBy('categoria', 'desc')
+                ->select('id', 'title')
+                ->get(); (Esto traería sólo los campos indicados)
+
+                $post = Post::orderBy('categoria', 'desc')
+                ->select('id', 'title')
+                ->take(2)
+                ->get(); (Esto sólo traería 2 registros)
+                
+
+                    Así sería:
+                    $post = Post::where('title', 'Titulo de prueba 2')
+                        ->first();
+
+                    $post->categoria = 'Desarrollo web';
+                    $post->save();
+
+
+            ELIMINAR UN REGISTRO
+
+                $post = Post::find(1);
+
+                $post->delete();
+
+            - MUY importante tener en cuenta el tema de los plurales que Eloquent interpreta por defecto
+
+            Si no le indicamos el nombre de la tabla el le pondrá simplemente una "s" al final del nombre del modelo, si no encuentra su plural
+
+            Mejor definir el nombre así:
+            protected $table = 'posts';
+
+
+
+
+
+            
+
+
+
+
 
