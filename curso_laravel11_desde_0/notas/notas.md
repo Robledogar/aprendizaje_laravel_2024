@@ -270,11 +270,86 @@ Proceso:
             Mejor definir el nombre así:
             protected $table = 'posts';
 
+    - Lo siguiente sería configurar mutadores y accesores 
+        - Sirven para estandarizar los registros que aporta el usuario
+        
+            - Importamos esto en el modelo
+                use Illuminate\Database\Eloquent\Casts\Attribute;
 
 
+            - Creamos esta funcion en el modelo (para encargarnos de que el tittle se guarde siempre en minúsculas por ejemplo, aunque podría ser cualquier campo de la tabla que representa el modelo)
+                protected function title():Attribute
+                {
+                    return Attribute::make(
+                        set: function($value) {
+                            return strtolower($value);
+                        }
+                    );
+                }
+
+            - También podríamos hacer que al recuperar el registro por ejemplo, se muestre siempre en mayúscula la primera letra. Añadimos el método get al ejemplo anterior. Los "set" (Mutadores) serían para cuando agregamos algo a la base de datos y los "get" (Acesores) para cuando recuperamos algo de la base de datos
+
+                protected function title():Attribute
+                {
+                    return Attribute::make(
+                        set: function($value) {
+                            return strtolower($value);
+                        },
+                        get: function($value)
+                        {
+                            return ucfirst($value);
+                        }
+                    );
+                }
+
+            - Así hariamos dos cambios con un set (no puede haber dos set)
+
+                protected function title():Attribute
+                {
+                    return Attribute::make(
+                        set: function($value) {
+                            $value = strtolower($value);
+                            $value = ucfirst($value);
+                            return $value;
+                        },
+                        get: function($value)
+                        {
+                            return ucfirst($value);
+                        }
+                    );
+                }
 
 
-            
+    - Lo siguiente sería el Casting que sirve para midificar también la forma de ingresar y recuperar la información de la base de datos (Estos sirven para casos más genéricos)
+
+        - Ejemplo. Modificamos el formato de la fecha en web.php con métodos de Carbon
+            $post = Post::find(4);
+            return $post->created_at->format('d-m-Y');
+
+        - o por ejemplo
+            return $post->created_at->diffForHumans(); (El típico 30 hours ago)
+
+        - Existen muchas más (https://carbon.nesbot.com/)
+
+        - Un ejercicio de ejemplo fue el añadir un campo nuevo a la tabla modificando una migración
+            $table->timestamp('published_at')->nullable();
+
+        - para descubrir que eloquent lo trata como si fuera un string y no se podrían aplicar los métodos anteriores como por ejemplo: 
+            return $post->created_at->format('d-m-Y');
+
+        - Para cambiar esta interpretación de Eloquent, añadimos este método a web.php para que lo tome como dato de tipo fecha
+
+            protected function casts(): array
+            {
+                return [
+                    'published_at' => 'datetime',
+                    'is_active' => 'boolean'
+                ];
+            }
+
+        - Pueden añadirse muchos más a este array (https://laravel.com/docs/11.x/eloquent-mutators#attribute-casting)
+        Estos cambios son tanto para guardar en la base de datos como para recuperar (Carbon los adaptaría)
+
 
 
 
