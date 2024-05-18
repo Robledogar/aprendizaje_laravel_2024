@@ -351,7 +351,41 @@ Proceso:
         Estos cambios son tanto para guardar en la base de datos como para recuperar (Carbon los adaptaría)
 
 
+    - Lo siguiente serán los seeders que sirven para hacer que algunos registros estén siempre presentes aunque hagamos un migrate:fresh
 
+        - Configuraremos el archivo database\seeders\DatabaseSeeder.php
 
+        - Tenemos que fijarnos que esté importado el modelo. (ejemplo: use App\Models\User;)
 
+        - Añadimos los datos a DatabaseSeeder.php que queramos que estén siempre presentes, así:
+
+            public function run(): void
+            {
+                $user = new User();
+
+                $user->name = 'Victor Arana';
+                $user->email = 'victor@gmail.com';
+                $user->password = bcrypt('12345678');
+
+                $user->save();
+            }
+
+        - Ejecutamos el comando:
+            php artisan db:seed
+
+        - Este otro comando ejecuta un fresh y ademas añade el seed:
+            php artisan migrate:fresh --seed
+
+        - Lo ideal es crear varios seeders para un mejor mantenimiento del proyecto. Con el siguiente comando:
+            php artisan make:seeder UserSeeder
+
+        - Antes de ejecutar los seeders en la terminal, debemos indicarle a DatabaseSeeder.php que ahora hay más seeders. 
+            
+            public function run(): void
+            {
+                $this->call([
+                    UserSeeder::class,
+                    PostSeeder::class
+                ]);
+            }
 
