@@ -1,12 +1,13 @@
 <?php
 
 use App\Http\Controllers\InscribirseController;
+use App\Http\Controllers\VoluntariosController;
 use App\Models\Inscribirse;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome'); 
-})->name('home'); // Asigna el nombre "home" a la ruta principal
+
+
+Route::view('/', 'welcome')->name('home'); // Asigna el nombre "home" a la ruta principal
 
 
 Route::get('/acerca-de', function () {
@@ -23,21 +24,15 @@ Route::get('/inscribete', function () {
     return view(('inscribete'));
 })->name('inscribete');
 
+Route::get('/registrado', function () {
+    return view(('registrado'));
+})->name('registrado');
 
-Route::get('/inscribirse', function() {
-    $inscrito = new Inscribirse;
+Route::get('/inscribirse', [InscribirseController::class, 'index'])->name('inscribirse');
 
-    $inscrito->nombre = 'Jose Luís';
-    $inscrito->email = 'jose@gmail.com';
+Route::post('/inscribirse', [InscribirseController::class, 'store'])->name('inscribirse');
 
-    $inscrito->save();
-
-    return $inscrito;
-
-
-});
-
-
+Route::get('/voluntarios', [VoluntariosController::class, 'index'])->name('voluntarios');
 
 
 

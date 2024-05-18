@@ -128,12 +128,16 @@ img {
     border-radius: 5px;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   }
-  
-  /* Efecto de opacidad al pasar el mouse */
-  img:hover {
+
+  .imagenFondo {
+
+    background-image: url('../img/voluntarios.jpg');
+    background-repeat: repeat; /* Controla cómo se repite la imagen (opciones: repeat, repeat-x, repeat-y, no-repeat) */
+    background-position: center; /* Controla la posición de la imagen (opciones: top, left, center, bottom, right, top left, top right, bottom left, bottom right) */
+    background-size: cover; /* Controla cómo se dimensiona la imagen (opciones: auto, contain, cover) */
+    backdrop-filter: blur(5px);
   
   }
-
 
   /* Estilos de la página About */
 
@@ -288,9 +292,6 @@ body {
   }
 
 
-  ¡Claro que sí! Aquí te presento algunos estilos CSS básicos para darle un mejor aspecto a tu formulario de registro de voluntarios:
-
-CSS
 /* Estilo general del formulario */
 .formulario {
     max-width: 500px;

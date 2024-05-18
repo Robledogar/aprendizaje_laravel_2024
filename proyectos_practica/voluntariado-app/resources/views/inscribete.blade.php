@@ -6,7 +6,7 @@
 <h1>¡Únete a nuestro equipo de voluntarios!</h1>
     <p>Completa el siguiente formulario para registrarte como voluntario y recibir información sobre las oportunidades disponibles.</p>
 
-    <form action="{{ route('inscribirse.store') }}" method="POST"> 
+    <form action="{{ route('inscribirse') }}" method="POST"> 
         @csrf
 
         <div class="grupo-formulario">

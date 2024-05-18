@@ -12,7 +12,7 @@ class InscribirseController extends Controller
      */
     public function index()
     {
-        
+        return 'Accediendo al controlador con el método index';
     }
 
     /**
@@ -28,7 +28,15 @@ class InscribirseController extends Controller
      */
     public function store(Request $request)
     {
-       return "Funcionando el acceso al método store";
+        
+        $inscrito = new Inscribirse;
+    
+        $inscrito->nombre = $request->nombre;
+        $inscrito->email = $request->correo;
+    
+        $inscrito->save();
+        
+        return redirect('/registrado');
     }
 
     /**
